@@ -6,7 +6,7 @@
     <title>KayıtOl</title>
 </head>
 <body>
-<?php include 'common.php'; ?>
+<?php include 'bootsrap.php'; ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Singin</a>
@@ -16,25 +16,25 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/index.html">Ana Sayfa</a>
+                <a class="nav-link active" aria-current="page" href="/PHP-Project/index.php">Ana Sayfa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/urunler.php">Ürünler</a>
+                <a class="nav-link" href="/PHP-Project/urunler.php">Ürünler</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/sepet.php">Sepet</a>
+                <a class="nav-link" href="/PHP-Project/sepet.php">Sepet</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/hakkında.php">Hakkında</a>
+                <a class="nav-link" href="/PHP-Project/hakkında.php">Hakkında</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/iletişim.php">İletişim</a>
+                <a class="nav-link" href="/PHP-Project/iletişim.php">İletişim</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/login.php">Giriş Yap</a>
+                <a class="nav-link" href="/PHP-Project/login.php">Giriş Yap</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/singing.php">Kayıt Ol</a>
+                <a class="nav-link" href="/PHP-Project/singin.php">Kayıt Ol</a>
               </li>
             </ul>
           </div>
