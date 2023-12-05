@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Türkçe Datepicker Örngkjggjeği</title>
+
+  <!-- Flatpickr kütüphanesi -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <!-- Türkçe dil dosyası -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/tr.js"></script>
+</head>
+<body>
+
+  <p>Tarih Seçin: <input type="text" id="datepicker"></p>
+
+  <!-- Flatpickr kullanımı -->
+  <script>
+    flatpickr("#datepicker", {
+      locale: "tr", // Türkçe dil seçeneği
+      dateFormat: "d.m.Y" // Tarih formatı
+    });
+  </script>
+
+</body>
+</html>
