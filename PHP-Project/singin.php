@@ -16,7 +16,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/PHP-Project/index.php">Ana Sayfa</a>
+                <a class="nav-link" href="/PHP-Project/index.php">Ana Sayfa</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/PHP-Project/urunler.php">Ürünler</a>
@@ -34,7 +34,7 @@
                 <a class="nav-link" href="/PHP-Project/login.php">Giriş Yap</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/singin.php">Kayıt Ol</a>
+                <a class="nav-link active" aria-current="page" href="/PHP-Project/singin.php">Kayıt Ol</a>
               </li>
             </ul>
           </div>
