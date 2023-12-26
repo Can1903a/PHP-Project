@@ -1,45 +1,124 @@
+<?php
+include 'database.php';
+include 'bootstrap.php';
+session_start();
+
+// Kullanıcı giriş yapmamışsa, giriş yapma sayfasına yönlendir
+if (!isset($_SESSION['Musteri_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Kullanıcı giriş yapmışsa
+if (isset($_SESSION['Musteri_id'])) {
+    $welcomeMessage = "Hoşgeldiniz, " . $_SESSION['Musteri_id'];
+    $logoutLink = "<a class='nav-link' href='/PHP-Project/logout.php'>Çıkış Yap</a>";
+    $loginLink = ""; // Giriş yap linkini görünmez yap
+    $signupLink = ""; // Kayıt ol linkini görünmez yap
+} else {
+    $welcomeMessage = "";
+    $loginLink = "<a class='nav-link' aria-current='page' href='/PHP-Project/login.php'>Giriş Yap</a>";
+    $signupLink = "<a class='nav-link' href='/PHP-Project/singup.php'>Kayıt Ol</a>";
+    $logoutLink = ""; // Çıkış yap linkini görünmez yap
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/PHP-Project/css/style.css">
     <title>Hakkında</title>
-
 </head>
+<style>
+    .footer{
+
+            top : 600px;
+   
+        }
+</style>
 <body>
-  <?php include 'bootsrap.php'; ?>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Hakkında</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/index.php">Ana Sayfa</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/urunler.php">Ürünler</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/sepet.php">Sepet</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/PHP-Project/hakkında.php">Hakkında</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/iletişim.php">İletişim</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/login.php">Giriş Yap</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/singin.php">Kayıt Ol</a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="#">E-Ticaret</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/PHP-Project/index.php">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/PHP-Project/urunler.php">Ürünler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/PHP-Project/sepet.php">Sepet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/PHP-Project/hakkında.php">Hakkında</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/PHP-Project/iletişim.php">İletişim</a>
+                    </li>
+                <?php echo $loginLink; ?>
+                <?php echo $signupLink; ?>
+                <?php echo $welcomeMessage; ?>
+                <?php echo $logoutLink; ?>
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
+    <div class="kutu">
+<div class="sabit">
+    <div class="container my-5 hakkında-container">
+        <div class="text-center">
+            <h2>Hakkımızda</h2>
+            <div>
+                <p>XYZ E-Ticaret, 2010 yılında kurulmuş bir e-ticaret platformudur. Amacımız müşterilere en kaliteli
+                    ürünleri uygun fiyatlarla sunmak ve harika bir alışveriş deneyimi sağlamaktır.</p>
+                <p>Misyonumuz, müşterilere yüksek kaliteli ürünler sunmak ve onların beklentilerini aşmaktır. Vizyonumuz ise
+                    müşteri memnuniyetini her şeyin önünde tutarak sürekli büyümektir.</p>
+                <p>Değerlerimiz arasında müşteri odaklılık, kalite, dürüstlük ve sosyal sorumluluk bulunmaktadır. Ekibimiz,
+                    bu değerlere bağlı kalarak sizlere en iyi hizmeti sunmaktan gurur duyar.</p>
+                <p>XYZ E-Ticaret olarak, müşterilerimizin memnuniyeti bizim için en önemli önceliktir. Sizlere güvenli ve
+                    keyifli bir alışveriş deneyimi yaşatmak için buradayız.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <div class="footer">
+
+    <!-- Footer container -->
+    <div class="container-fluid bg-dark text-light">
+        <div class="row py-1">
+            <div class="col-md-6">
+                <h5>İletişim Bilgileri</h5>
+                <p>Adres: 123 Bootstrap Street, İstanbul</p>
+                <p>Email: info@example.com</p>
+                <p>Telefon: (555) 123-4567</p>
+            </div>
+            <div class="col-md-6">
+                <h5>Hızlı Bağlantılar</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Anasayfa</a></li>
+                    <li><a href="#">Hakkımızda</a></li>
+                    <li><a href="#">Hizmetlerimiz</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 </body>
+
 </html>

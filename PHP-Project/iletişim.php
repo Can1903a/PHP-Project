@@ -1,44 +1,133 @@
+<?php
+include 'database.php';
+include 'bootstrap.php';
+session_start();
+
+// Kullanıcı giriş yapmamışsa, giriş yapma sayfasına yönlendir
+if (!isset($_SESSION['Musteri_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Kullanıcı giriş yapmışsa
+if (isset($_SESSION['Musteri_id'])) {
+    $welcomeMessage = "Hoşgeldiniz, " . $_SESSION['Musteri_id'];
+    $logoutLink = "<a class='nav-link' href='/PHP-Project/logout.php'>Çıkış Yap</a>";
+    $loginLink = ""; // Giriş yap linkini görünmez yap
+    $signupLink = ""; // Kayıt ol linkini görünmez yap
+} else {
+    $welcomeMessage = "";
+    $loginLink = "<a class='nav-link' aria-current='page' href='/PHP-Project/login.php'>Giriş Yap</a>";
+    $signupLink = "<a class='nav-link' href='/PHP-Project/singup.php'>Kayıt Ol</a>";
+    $logoutLink = ""; // Çıkış yap linkini görünmez yap
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/PHP-Project/css/style.css">
+    <title>İletişim</title>
 </head>
+<style>
+        .footer{
+
+top : 600px;
+
+}
+</style>
 <body>
-<?php include 'bootsrap.php'; ?>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">İletişim</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/index.php">Ana Sayfa</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/urunler.php">Ürünler</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/sepet.php">Sepet</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/hakkında.php">Hakkında</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/PHP-Project/iletişim.php">İletişim</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/login.php">Giriş Yap</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/PHP-Project/singin.php">Kayıt Ol</a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="#">E-Ticaret</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/PHP-Project/index.php">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/PHP-Project/urunler.php">Ürünler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/PHP-Project/sepet.php">Sepet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/PHP-Project/hakkında.php">Hakkında</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/PHP-Project/iletişim.php">İletişim</a>
+                    </li>
+                <?php echo $loginLink; ?>
+                <?php echo $signupLink; ?>
+                <?php echo $welcomeMessage; ?>
+                <?php echo $logoutLink; ?>
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
+
+    <div class="kutu">
+    <div class="sabit">
+        <div class="container my-5 hakkında-container">
+            <div class="text-center">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>İletişim Bilgileri</h2>
+                            <p>Adres: 123 Bootstrap Street, İstanbul</p>
+                            <p>Email: info@example.com</p>
+                            <p>Telefon: (555) 123-4567</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>İletişim Logoları</h2>
+                            <div class="d-flex justify-content-around">
+                                <!-- İletişim logolarını ekleyebilir ve uygun linkleri belirleyebilirsiniz -->
+                                <a href="https://github.com/Can1903a" target="_blank"><img src="/PHP-Project/images/github.png" alt="github" style="max-width: 60px; max-height: 60px;"></a>
+                                <a href="https://twitter.com" target="_blank"><img src="/PHP-Project/images/x.png" alt="Twitter/X" style="max-width: 50px; max-height: 50px;"></a>
+                                <a href="https://www.whatsapp.com/" target="_blank"><img src="/PHP-Project/images/wp.png" alt="Instagram Logo" style="max-width: 50px; max-height: 50px;"></a>
+                                <!-- /İletişim logoları -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+    <div class="footer">
+
+    <!-- Footer container -->
+    <div class="container-fluid bg-dark text-light">
+        <div class="row py-1">
+            <div class="col-md-6">
+                <h5>İletişim Bilgileri</h5>
+                <p>Adres: 123 Bootstrap Street, İstanbul</p>
+                <p>Email: info@example.com</p>
+                <p>Telefon: (555) 123-4567</p>
+            </div>
+            <div class="col-md-6">
+                <h5>Hızlı Bağlantılar</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Anasayfa</a></li>
+                    <li><a href="#">Hakkımızda</a></li>
+                    <li><a href="#">Hizmetlerimiz</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
+
 </html>
