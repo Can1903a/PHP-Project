@@ -4,17 +4,29 @@ include 'database.php';
 include 'bootstrap.php';
 session_start();
 
+$welcomeMessage = "";
+$logoutLink = "";
+$loginLink = "<a class='nav-link' aria-current='page' href='/PHP-Project/login.php'>Giriş Yap</a>";
+$signupLink = "<a class='nav-link' href='/PHP-Project/signup.php'>Kayıt Ol</a>";
+
 // Kullanıcı giriş yapmışsa
 if (isset($_SESSION['Musteri_id'])) {
-    $welcomeMessage = "Hoşgeldiniz, " . $_SESSION['Musteri_id'];
+    $musteriID = $_SESSION['Musteri_id'];
+
+    // Müşteri bilgilerini çek
+    $musteriQuery = "SELECT * FROM musteriler WHERE Musteriler_id = $musteriID";
+    $musteriResult = $conn->query($musteriQuery);
+
+    if ($musteriResult->num_rows > 0) {
+        $musteri = $musteriResult->fetch_assoc();
+        $isim = $musteri['Musteriler_Adi']; // "Musteriler_Adi" sütun adını kullanarak adı çekin
+        $welcomeMessage = "<h1 id='hosgeldin' class='welcome-message'>Hoşgeldiniz, " . $isim . "</h1>";
+        
+    }
+
     $logoutLink = "<a class='nav-link' href='/PHP-Project/logout.php'>Çıkış Yap</a>";
     $loginLink = ""; // Giriş yap linkini görünmez yap
     $signupLink = ""; // Kayıt ol linkini görünmez yap
-} else {
-    $welcomeMessage = "";
-    $loginLink = "<a class='nav-link' aria-current='page' href='/PHP-Project/login.php'>Giriş Yap</a>";
-    $signupLink = "<a class='nav-link' href='/PHP-Project/singup.php'>Kayıt Ol</a>";
-    $logoutLink = ""; // Çıkış yap linkini görünmez yap
 }
 
 // Kategorileri çekme
@@ -52,7 +64,12 @@ $selectedCategoryProductsResult = $conn->query($selectedCategoryProductsQuery);
         a {
             text-decoration: none;
         }
+        .footer{
+            position: static;
+        }
+        
     </style>
+    
 </head>
 <body>
 
@@ -112,26 +129,34 @@ $selectedCategoryProductsResult = $conn->query($selectedCategoryProductsQuery);
 <!-- Sabit alan içindeki slider container -->
 
 
-<div class="content">
+
 <div class="tutturulmus-konum">
-    <div class="slider-container">
-        <!-- Swiper -->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <!-- Slider içeriği -->
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <!-- İhtiyacınıza göre daha fazla slide ekleyebilirsiniz -->
-            </div>
-            <!-- Navigasyon düğmeleri -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <!-- Sayfa noktaları (pagination) -->
-            <div class="swiper-pagination"></div>
-        </div>
+<!-- HTML kodu -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <?php
+        $randomProductsQuery = "SELECT * FROM urunler ORDER BY RAND() LIMIT 5";
+        $randomProductsResult = $conn->query($randomProductsQuery);
+
+        while ($randomProduct = $randomProductsResult->fetch_assoc()) {
+            echo '<div class="swiper-slide">';
+            echo '<img src="' . $randomProduct['Resim_URL'] . '" alt="' . $randomProduct['Urunler_Adi'] . '">';
+            echo '<div class="product-details">';
+            echo '<h3>' . $randomProduct['Urunler_Adi'] . '</h3>';
+            echo '<p class="price">₺' . number_format($randomProduct['Urunler_Fiyat'], 2) . '</p>';
+            echo '</div>';
+            echo '</div>';
+        }
+        ?>
     </div>
+    <!-- Ek kontroller -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
 </div>
+
+</div>
+
 <div class="anasayfa-kategori">
     <div class="kategori-wrapper">
         <div class="kategori-header">
@@ -148,7 +173,7 @@ $selectedCategoryProductsResult = $conn->query($selectedCategoryProductsQuery);
 
                     echo '<div class="col-md-2">';
                     echo '<a href="/PHP-Project/urun-detay.php?id=' . $product['Urunler_id'] . '">';
-                    echo '<img class="card-img-top" src="' . $product['Resim_URL'] . '" alt="' . $product['Urunler_Adi'] . '">';
+                    echo '<img class="card-img-top" src="' . $product['Resim_URL'] . '" alt="' . $product['Urunler_Adi'] .'" style="max-width: 400px; max-height: 400px;">';
                     echo '<div class="card-body">';
                     echo '<h5 class="card-title">' . $product['Urunler_Adi'] . '</h5>';
                     echo '<p class="card-text">' . $product['Urunler_Aciklama'] . '</p>';

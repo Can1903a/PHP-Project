@@ -2,17 +2,29 @@
 include 'database.php';
 session_start();
 
+$welcomeMessage = "";
+$logoutLink = "";
+$loginLink = "<a class='nav-link' aria-current='page' href='/PHP-Project/login.php'>Giriş Yap</a>";
+$signupLink = "<a class='nav-link' href='/PHP-Project/signup.php'>Kayıt Ol</a>";
+
 // Kullanıcı giriş yapmışsa
 if (isset($_SESSION['Musteri_id'])) {
-    $welcomeMessage = "Hoşgeldiniz, " . $_SESSION['Musteri_id'];
+    $musteriID = $_SESSION['Musteri_id'];
+
+    // Müşteri bilgilerini çek
+    $musteriQuery = "SELECT * FROM musteriler WHERE Musteriler_id = $musteriID";
+    $musteriResult = $conn->query($musteriQuery);
+
+    if ($musteriResult->num_rows > 0) {
+        $musteri = $musteriResult->fetch_assoc();
+        $isim = $musteri['Musteriler_Adi']; // "Musteriler_Adi" sütun adını kullanarak adı çekin
+        $welcomeMessage = "<h1 id='hosgeldin' class='welcome-message'>Hoşgeldiniz, " . $isim . "</h1>";
+        echo $welcomeMessage;
+    }
+
     $logoutLink = "<a class='nav-link' href='/PHP-Project/logout.php'>Çıkış Yap</a>";
     $loginLink = ""; // Giriş yap linkini görünmez yap
     $signupLink = ""; // Kayıt ol linkini görünmez yap
-} else {
-    $welcomeMessage = "";
-    $loginLink = "<a class='nav-link' aria-current='page' href='/PHP-Project/login.php'>Giriş Yap</a>";
-    $signupLink = "<a class='nav-link' href='/PHP-Project/singup.php'>Kayıt Ol</a>";
-    $logoutLink = ""; // Çıkış yap linkini görünmez yap
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

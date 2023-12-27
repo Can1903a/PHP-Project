@@ -40,5 +40,28 @@
           </div>
         </div>
       </nav>
+
+      <div class="footer">
+    <div class="container-fluid bg-dark text-light">
+        <div class="row py-4">
+            <div class="col-md-6">
+                <h5>İletişim Bilgileri</h5>
+                <p>Adres: 123 Bootstrap Street, İstanbul</p>
+                <p>Email: info@example.com</p>
+                <p>Telefon: (555) 123-4567</p>
+            </div>
+            <div class="col-md-6">
+                <h5>Hızlı Bağlantılar</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Anasayfa</a></li>
+                    <li><a href="#">Hakkımızda</a></li>
+                    <li><a href="#">Hizmetlerimiz</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

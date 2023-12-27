@@ -5,8 +5,8 @@ session_start();
 
 // Kullanıcı giriş yapmamışsa, giriş yapma sayfasına yönlendir
 if (!isset($_SESSION['Musteri_id'])) {
-  header("Location: login.php");
-  exit();
+    header("Location: login.php");
+    exit();
 }
 
 $welcomeMessage = "";
@@ -33,21 +33,10 @@ if (isset($_SESSION['Musteri_id'])) {
     $loginLink = ""; // Giriş yap linkini görünmez yap
     $signupLink = ""; // Kayıt ol linkini görünmez yap
 }
-
-if (isset($_POST['onayla'])) {
-    // Siparişi veritabanına kaydetme işlemleri burada yapılır
-    // Örneğin: Sipariş tablosuna kayıt ekleme, stoktan düşme, vs.
-
-    // Şu anki örnek sadece sepeti temizler
-    $musteriID = $_SESSION['Musteri_id'];
-    $deleteQuery = "DELETE FROM sepet WHERE Musteriler_id = $musteriID";
-    $conn->query($deleteQuery);
-
-    header("Location: index.php");
-    
-    exit();
-  
-}
+$musteriID = $_SESSION['Musteri_id'];
+$urunID = $_GET['id'];
+$urunQuery = "SELECT * FROM urunler WHERE Urunler_id = $urunID";
+$urunResult = $conn->query($urunQuery);
 ?>
 
 <!DOCTYPE html>
@@ -98,27 +87,18 @@ if (isset($_POST['onayla'])) {
     <div class="row">
         <div class="col-md-6">
             <?php
-            $musteriID = $_SESSION['Musteri_id'];
-            $sepetQuery = "SELECT sepet.*, urunler.Urunler_Adi, urunler.Urunler_Fiyat  FROM sepet JOIN urunler ON sepet.Urunler_id = urunler.Urunler_id WHERE Musteriler_id = $musteriID";
-            $sepetResult = $conn->query($sepetQuery);
-
-            if ($sepetResult->num_rows > 0) {
-                $toplamFiyat = 0;
-                while ($row = $sepetResult->fetch_assoc()) {
-                    $urunAdet = $row['adet'];
-                    $urunFiyat = $row['Urunler_Fiyat'];
-                    $toplamFiyatUrun = $urunAdet * $urunFiyat;
-                    $toplamFiyat += $toplamFiyatUrun;
-
-                    echo '<div class="mb-3">';
-                    echo '<p><strong>Ürün Adı:</strong> ' . $row['Urunler_Adi'] . '</p>';
-                    echo '<p class="fiyat"><strong>Fiyat:</strong> ' . $row['Urunler_Fiyat'] . ' TL</p>';
-                    echo '</div>';
-                }
-                echo '<p>Toplam Fiyat: ' . $toplamFiyat . ' TL</p>';
-            } else {
-                echo '<p>Sepetiniz boş.</p>';
-            }
+            if ($urunResult->num_rows > 0) {
+        while ($row = $urunResult->fetch_assoc()) {
+            $urunİsmi = $row['Urunler_Adi'];
+            $urunFiyat = $row['Urunler_Fiyat'];
+            echo '<div class="mb-3">';
+            echo '<p><strong>Ürün Adı:</strong> ' . $row['Urunler_Adi'] . '</p>';
+            echo '<p class="fiyat"><strong>Fiyat:</strong> ' . $row['Urunler_Fiyat'] . ' TL</p>';
+            echo '</div>';
+        }
+    } else {
+        echo '<p>Sepetiniz boş.</p>';
+    }
             ?>
         </div>
 
@@ -141,7 +121,6 @@ if (isset($_POST['onayla'])) {
         </div>
     </div>
 </div>
-
 
 <div class="footer">
     <!-- Footer container -->

@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "12345";
+$password = "1234";
 $dbname = "Eticaret";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

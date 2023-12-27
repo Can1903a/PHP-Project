@@ -3,23 +3,31 @@ include 'database.php';
 include 'bootstrap.php';
 session_start();
 
-// Kullanıcı giriş yapmamışsa, giriş yapma sayfasına yönlendir
-if (!isset($_SESSION['Musteri_id'])) {
-    header("Location: login.php");
-    exit();
-}
+
+
+$welcomeMessage = "";
+$logoutLink = "";
+$loginLink = "<a class='nav-link' aria-current='page' href='/PHP-Project/login.php'>Giriş Yap</a>";
+$signupLink = "<a class='nav-link' href='/PHP-Project/signup.php'>Kayıt Ol</a>";
 
 // Kullanıcı giriş yapmışsa
 if (isset($_SESSION['Musteri_id'])) {
-    $welcomeMessage = "Hoşgeldiniz, " . $_SESSION['Musteri_id'];
+    $musteriID = $_SESSION['Musteri_id'];
+
+    // Müşteri bilgilerini çek
+    $musteriQuery = "SELECT * FROM musteriler WHERE Musteriler_id = $musteriID";
+    $musteriResult = $conn->query($musteriQuery);
+
+    if ($musteriResult->num_rows > 0) {
+        $musteri = $musteriResult->fetch_assoc();
+        $isim = $musteri['Musteriler_Adi']; // "Musteriler_Adi" sütun adını kullanarak adı çekin
+        $welcomeMessage = "<h1 id='hosgeldin' class='welcome-message'>Hoşgeldiniz, " . $isim . "</h1>";
+        echo $welcomeMessage;
+    }
+
     $logoutLink = "<a class='nav-link' href='/PHP-Project/logout.php'>Çıkış Yap</a>";
     $loginLink = ""; // Giriş yap linkini görünmez yap
     $signupLink = ""; // Kayıt ol linkini görünmez yap
-} else {
-    $welcomeMessage = "";
-    $loginLink = "<a class='nav-link' aria-current='page' href='/PHP-Project/login.php'>Giriş Yap</a>";
-    $signupLink = "<a class='nav-link' href='/PHP-Project/singup.php'>Kayıt Ol</a>";
-    $logoutLink = ""; // Çıkış yap linkini görünmez yap
 }
 ?>
 <!DOCTYPE html>
@@ -31,13 +39,7 @@ if (isset($_SESSION['Musteri_id'])) {
     <link rel="stylesheet" href="/PHP-Project/css/style.css">
     <title>Hakkında</title>
 </head>
-<style>
-    .footer{
 
-            top : 600px;
-   
-        }
-</style>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -72,7 +74,7 @@ if (isset($_SESSION['Musteri_id'])) {
             </div>
         </div>
     </nav>
-    <div class="kutu">
+
 <div class="sabit">
     <div class="container my-5 hakkında-container">
         <div class="text-center">
@@ -87,9 +89,10 @@ if (isset($_SESSION['Musteri_id'])) {
                 <p>XYZ E-Ticaret olarak, müşterilerimizin memnuniyeti bizim için en önemli önceliktir. Sizlere güvenli ve
                     keyifli bir alışveriş deneyimi yaşatmak için buradayız.</p>
             </div>
+            
         </div>
-    </div>
-    </div>
+        
+        </div>
     </div>
 
 
@@ -97,7 +100,7 @@ if (isset($_SESSION['Musteri_id'])) {
     <div class="footer">
 
     <!-- Footer container -->
-    <div class="container-fluid bg-dark text-light">
+    <div class="container-fluid bg-dark text-light fixed-bottom">
         <div class="row py-1">
             <div class="col-md-6">
                 <h5>İletişim Bilgileri</h5>

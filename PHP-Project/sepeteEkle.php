@@ -31,8 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = 'Geçersiz istek methodu.';
 }
 
-// Sepete ekleme veya güncelleme başarısız olduğunda bir hata mesajı gösterilebilir
-echo '<script>';
-echo 'alert("' . $message . '");';
-echo '</script>';
 ?>
+<script>;
+ alert("' . $message . '");;
+</script>;

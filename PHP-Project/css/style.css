@@ -128,6 +128,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+   
+
 }
 
 .col-md-4.mb-4 .card-title {
@@ -351,14 +353,20 @@ body {
         right: 10%;
         }
 
-        .footer{
-            position: relative;
+        .footer {
+            position: fixed;
             bottom: 0;
+            left: 0;
             width: 100%;
-            padding: 0 0; 
+            background-color: #343a40; /* İstediğiniz arkaplan rengi */
+            color: white; /* İstediğiniz metin rengi */
+            text-align: center; /* Metni ortala */
             z-index: 999;
-
-            
+        }
+        .container-fluid.bg-dark.text-light .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
         
         .satinal-container {
@@ -372,6 +380,69 @@ body {
             font-weight: bold;
             color: #28a745; /* Yeşil renk */
         }
+
+/* CSS kodu */
+.welcome-message {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+    padding: 10px;
+}
+/* CSS kodu */
+.swiper-container {
+    width: 80%;
+    margin: auto;
+}
+
+.swiper-slide {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.swiper-slide:hover {
+    transform: scale(1.05);
+}
+
+.swiper-slide img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.product-details {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-details h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.price {
+    font-weight: bold;
+    color: #e44d26;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+    font-size: 24px;
+}
+
+.swiper-pagination {
+    bottom: 10px;
+}
+
+
+
+        
 
 
 
