@@ -1,0 +1,92 @@
+
+  .slider-container {
+    position: relative; /* Pozisyonu belirle */
+    width: 80%; /* veya istediğiniz genişlik */
+    max-width: 800px; /* veya istediğiniz maksimum genişlik */
+    height: 300px;
+    overflow: hidden;
+    border: 1px solid #ddd; /* Kutucuk kenarlık rengi */
+    border-radius: 8px; /* Kutucuk kenarlık yuvarlaklığı */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Kutucuk gölge efekti */
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+
+.swiper-container {
+    width: 80%;
+    margin: auto;
+}
+
+.swiper-slide {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.swiper-slide:hover {
+    transform: scale(1.05);
+}
+
+.swiper-slide img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+/* Slider içeriği için stil ayarları */
+.swiper-slide {
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #150202;
+    border-radius: 8px;
+}
+
+
+/* Navigasyon düğmeleri ve sayfa noktaları için stil ayarları */
+.swiper-button-next,
+.swiper-button-prev,
+.swiper-pagination {
+    position: absolute; /* Pozisyonu belirle */
+    top: 50%; /* Yukarıdan mesafe */
+    transform: translateY(-50%); /* Dikey hizalama */
+    color: #150202;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 40px; /* Düğme genişliği */
+    height: 40px; /* Düğme yüksekliği */
+    border-radius: 50%; /* Düğme yuvarlaklığı */
+    cursor: pointer;
+}
+
+.swiper-button-next { right: 10px; } /* Sağdan mesafe */
+.swiper-button-prev { left: 10px; } /* Soldan mesafe */
+
+.swiper-pagination { right: 10px; } /* Sağdan mesafe */
+
+/* Sayfa noktaları (pagination) için stil ayarları */
+.swiper-pagination-bullet {
+    width: 10px; /* Nokta genişliği */
+    height: 10px; /* Nokta yüksekliği */
+    margin: 0 5px; /* Noktalar arasındaki boşluk */
+    border-radius: 50%; /* Nokta yuvarlaklığı */
+    cursor: pointer;
+    
+}
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+    font-size: 24px;
+}
+
+.swiper-pagination {
+    bottom: 10px;
+}

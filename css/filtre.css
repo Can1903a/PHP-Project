@@ -1,0 +1,49 @@
+/* Filtre container wrapper */
+.filter-wrapper {
+    width: 15%; /* Filtre bölümünün genişliği */
+    float: left; /* Filtre bölümünü sola yasla */
+    position: fixed; /* Filtre bölümünü sabit pozisyonda tut */
+    top: 8%; /* Sayfanın üstünden belirli bir mesafede başlat */
+    left: 0; /* Sayfanın solundan başlat */
+    bottom: 0; /* Sayfanın en altına kadar uzat */
+    overflow-y: auto; /* Eğer içerik alanından fazla ise kaydırma çubuğu ekle */
+    padding-top: 20px; /* Üstte biraz boşluk bırak */
+    padding-bottom: 20px; /* Altta biraz boşluk bırak */
+    background-color: #fff; /* Arka plan rengini beyaz yap */
+    border-right: 1px solid #ddd; /* Sağ kenara ince bir çizgi ekle */
+}
+
+/* Filtre container */
+.filter-container {
+    width: 100%; /* Tam genişlik */
+    padding: 0 15px; /* Sağ ve sol kenarlara iç boşluk ekle */
+}
+
+/* Filtre kartı */
+.card {
+    margin-bottom: 20px;
+}
+
+/* Filtre başlığı */
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px 15px;
+}
+
+/* Filtre içeriği */
+.card-body {
+    padding: 15px;
+}
+
+/* Checkbox */
+.form-check-input {
+    margin-right: 5px;
+}
+/* Ürün listesi */
+.urunlist {
+    width: 85%; /* Ekranın %85'ini kapla */
+    margin-left: 15%; /* Filtre bölümünün genişliği kadar sola kaydır */
+    padding: 0 15px; /* Sağ ve sol kenarlara iç boşluk ekle */
+    box-sizing: border-box; /* Kenar boşlukları dahil hesaplama */
+}

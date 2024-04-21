@@ -1,0 +1,83 @@
+
+#searchResults {
+    position: absolute;
+    width: 300px;
+    background-color: white;
+    border: 0px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+}
+#searchResults div {
+    padding: 5px;
+    cursor: pointer;
+}
+#searchResults div:hover {
+    background-color: #f0f0f0;
+}
+    a {
+        text-decoration: none;
+    }
+    .footer{
+        position: static;
+    }
+
+
+.container-searchbox {
+width: 15%;
+background-color: #fff;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+input[type="text"] {
+width: calc(80% - 20px);
+padding: 10px;
+font-size: 16px;
+border: 1px solid #ddd;
+border-radius: 4px;
+outline: none;
+}
+
+#display {
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 4px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+position: absolute;
+width: 15%;
+max-height: 200px;
+overflow-y: auto;
+display: none;
+z-index: 999;
+top: 100%; /* Position it below the search input */
+left: 0; 
+}
+
+#display ul {
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
+
+#display ul li {
+padding: 10px;
+cursor: pointer;
+}
+
+#display ul li:hover {
+background-color: #f2f2f2;
+}
+#searchButton {
+    padding: 10px;
+    margin-left: 5px; /* Add some margin to separate from the search input */
+    border: 1px solid #dad7d7;
+    border-radius: 4px;
+    color: black;
+    cursor: pointer;
+}
+@media (max-width: 992px) {
+    .container-searchbox {
+        display: none; /* Hide the search box on smaller screens */
+    }
+}
